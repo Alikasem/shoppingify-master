@@ -1,14 +1,14 @@
 var Product = require('../entity/productsEntity.js');
-const {argsToArgsConfig} = require("graphql/type/definition");
 const Message = require("../helper/Message");
 async function getProduct(args){
     const product = await Product.findById(args.id).catch(() =>
-        console.log('there is no products')
+        new Message('product not here!! (<!>_<!>) ', 404)
     );
     return product;
 };
 async function products() {
-    return await Product.find();
+    const products = await Product.find().catch((error)=> console.log(error));
+    return products;
 };
 async function createProduct(args) {
     const newProduct = new Product({
