@@ -1,4 +1,5 @@
-const productGql = `
+const {gql} = require("apollo-server-express");
+const productGql = gql`
     type Product {
         id: ID!
         name: String
@@ -25,11 +26,11 @@ const productGql = `
         image: String
         category: String
     }
-     type Query{ 
+     extend type Query{ 
         getProduct(id: ID): Product
         products: [Product]
     }
-     type Mutation {
+      extend type Mutation {
         createProduct(product: CreateProduct): Message
         updateProduct(id: ID, product: UpdateProduct): Message
         deleteProduct(id: ID): Message

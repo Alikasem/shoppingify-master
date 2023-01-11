@@ -1,23 +1,28 @@
 `use strict`
-var express = require('express');
-var mongoose = require('mongoose');
-var {graphqlHTTP} = require('express-graphql');
-var { makeExecutableSchema } = require('@graphql-tools/schema');
-var productGql = require("./schema/productGql.js");
-var productResolver = require("./resolvers/productResolver.js");
+const express = require('express');
+const mongoose = require('mongoose');
+const {graphqlHTTP} = require('express-graphql');
+const {ApolloServer} = require("apollo-server");
+const typeDefs = require('./schema/index.js');
+const resolvers = require('./resolvers/index.js')
 
 const app = express();
 
-const excuteSchema = makeExecutableSchema({
-    typeDefs: productGql,
-    resolvers: productResolver
-});
-app.use('/graphql', graphqlHTTP({
-    schema: excuteSchema,
-    context: '',
-    graphiql: true,
-}),
-);
+// const excuteSchema = makeExecutableSchema({
+//     typeDefs: productGql,
+//     resolvers: productResolver
+// });
+const server = new ApolloServer({
+    typeDefs: typeDefs,
+    resolvers: resolvers
+})
+// app.use('/graphql', graphqlHTTP({
+//     schema: excuteSchema,
+//     context: '',
+//     graphiql: true,
+// }),
+// );
+server.applyMiddleware({app});
 mongoose.connect('mongodb://localhost:27017/shoopingify',
     {
         useNewUrlParser: true,
