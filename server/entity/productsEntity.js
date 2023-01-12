@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+import mongoose from "mongoose";
 const schema = mongoose.Schema;
 
 const productsShema = new schema({
@@ -10,5 +10,5 @@ const productsShema = new schema({
     last_update: Date,
     _deleted: {type: Boolean, default: false}
 });
-
-module.exports = mongoose.model('Product', productsShema);
+const productModel = mongoose.model('productModel', productsShema)
+export default productModel ;
