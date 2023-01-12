@@ -1,13 +1,13 @@
-var mongoose = require('mongoose');
-var Product = require('./productsEntity.js');
+import mongoose from "mongoose";
 
 const schema = mongoose.Schema;
 const ProductListSchema = new schema({
-    products: {type: schema.Types.ObjectId, ref: 'Product'},
+    products: {type: schema.Types.ObjectId, ref: 'productModel'},
     total: Number
 })
 const UserSchema = new schema({
     name: String,
     productList: [ProductListSchema]
 });
-module.exports = mongoose.model('User', UserSchema);
+const UserModel = mongoose.model('User', UserSchema);
+export default UserModel;

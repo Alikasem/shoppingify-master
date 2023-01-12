@@ -1,27 +1,28 @@
-const { gql } = require('apollo-server-express');
+import {gql} from "apollo-server-express";
 
 const UserGql = gql`
     type ProductList {
-        product: ID
+        products: Product
         total: Int
     }
-    type User: {
+    type User {
+        id: ID
         name: String
         productList: [ProductList]
     }
     input ProductListInput {
-        product: ID
+        products: ID
         total: Int
     }
     input CreateUser {
         name: String
         productList: [ProductListInput]
     }
-     extend type Query{
+    type Query {
         getUsersHistory: [User]
     }
-    extend type Mutation {
+    type Mutation {
         createUser(user: CreateUser): Message
     }
 `
-module.exports = UserGql;
+export default UserGql;

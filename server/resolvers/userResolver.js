@@ -1,4 +1,4 @@
-var user_controller = require('../controllers/user_controller.js');
+import user_controller from "../controllers/user_controller.js";
 
 const userResolver = {
     Query: {
@@ -14,4 +14,4 @@ const userResolver = {
         }
     }
 }
-module.exports = userResolver
+export default userResolver;

@@ -1,4 +1,6 @@
-const {gql} = require("apollo-server-express");
+// const {gql} = require("apollo-server-express");
+import {gql} from "apollo-server";
+import exp from "constants";
 const productGql = gql`
     type Product {
         id: ID!
@@ -36,4 +38,4 @@ const productGql = gql`
         deleteProduct(id: ID): Message
     }
 `
-module.exports = productGql;
+export default productGql;

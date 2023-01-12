@@ -1,4 +1,6 @@
-const productGql = require('./productGql.js');
-const UserGql = require('./userGql.js');
+// const productGql = require('./productGql.js');
+import productGql from "./productGql.js";
+import UserGql from "./userGql.js";
+// const UserGql = require('./userGql.js');
 // const typeDefs = [productGql, UserGql];
-module.exports = [productGql, UserGql];
+export default  [productGql, UserGql];
